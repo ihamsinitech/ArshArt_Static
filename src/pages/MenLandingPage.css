@@ -50,6 +50,60 @@
 
 
 
+.category-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.category-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+  text-align: center;
+}
+
+.category-overlay span {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.category-card span {
+  color: #f2f1ed;                 /* ✅ White text */
+  font-weight: 600;
+  font-size: 18px;
+  /* text-shadow: 0 2px 8px rgba(0,0,0,0.75);  */
+}
+
+
+/* Optional: darker overlay for clarity */
+.category-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.15)
+  );
+  border-radius: inherit;
+}
+
+.category-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card span {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
 
 
 
