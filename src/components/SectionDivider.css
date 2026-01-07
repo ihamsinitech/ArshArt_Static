@@ -1,0 +1,24 @@
+.section-divider {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.gold-line {
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    margin: 0 auto;
+    position: relative;
+}
+
+.gold-line::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: #D4AF37;
+    border-radius: 50%;
+}

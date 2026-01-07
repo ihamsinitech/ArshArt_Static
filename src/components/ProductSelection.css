@@ -1,0 +1,29 @@
+.vibe {
+  background: #faf4e8;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.vibe h2 {
+  font-size: 36px;
+  margin-bottom: 50px;
+}
+
+.vibe-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  padding: 0 80px;
+}
+
+.vibe-card img {
+  width: 100%;
+  border-radius: 50% 50% 0 0;
+}
+
+.vibe-card span {
+  display: block;
+  margin-top: 14px;
+  font-size: 18px;
+  font-weight: 600;
+}
