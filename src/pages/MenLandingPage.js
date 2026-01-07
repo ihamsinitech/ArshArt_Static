@@ -16,21 +16,73 @@ const heroBanners = [
 ];
 
 // EXPLORE CATEGORIES
+// EXPLORE CATEGORIES (UPDATED ORDER)
 const exploreCategories = [
-  { title: "Kurtas-Pyjamas", image: "/images/products/men/kurtas-pyjamas/kurta-01/front.jpg", link: "/kurtas-pyjamas" },
-  { title: "Sherwani", image: "/images/products/men/sherwani/sherwani-01/front.jpg", link: "/sherwani" },
-  { title: "Pagadi", image: "/images/products/men/pagadi/pagadi-01/front.jpg", link: "/pagadi" },
-  { title: "Shoes", image: "/images/products/men/shoes/shoes-01/front.jpg", link: "/shoes" },
-  { title: "Suits", image: "/images/products/men/suits/suits-02/front.jpg", link: "/suits" },
-
+  {
+    title: "Kurtas-Pyjamas",
+    image: "/images/products/men/kurtas-pyjamas/kurta-01/front.jpg",
+    link: "/kurtas"
+  },
+  {
+    title: "Sherwani",
+    image: "/images/products/men/sherwani/sherwani-01/front.jpg",
+    link: "/sherwanis"
+  },
+  {
+    title: "Suits", // ✅ MOVED TO 3RD
+    image: "/images/products/men/suits/suits-02/front.jpg",
+    link: "/suits"
+  },
+  {
+    title: "Pagadi",
+    image: "/images/products/men/pagadi/pagadi-01/front.jpg",
+    link: "/pagadis"
+  },
+  {
+    title: "Shoes",
+    image: "/images/products/men/shoes/shoes-01/front.jpg",
+    link: "/shoes"
+  }
 ];
+
 
 // MOST LOVED
 const mostLoved = [
-  { title: "Champagne Elegance Sherwani", price: "₹ 20,999", image: "/images/products/men/sherwani/sherwani-02/front.jpg", link: "/product/sherwanis/1" },
-  { title: "Royal Silk Kurta Pajama", price: "₹ 4,499", image: "/images/products/men/kurta-pyjamas/kurta-02/front.jpg", link: "/product/kurtas/2" },
-  { title: "Beige Royalty Suit", price: "₹ 24,999", image: "/images/products/men/suits/suit-02/front.jpg", link: "/product/suits/3" },
-  { title: "Traditional Leather Jutti", price: "₹ 3,999", image: "/images/products/men/shoes/shoes-02/front.jpg", link: "/product/traditional-shoes/4" },
+  {
+    id: 1,
+    title: "Champagne Elegance Sherwani",
+    price: "₹ 20,999",
+    image: "/images/products/men/sherwani/sherwani-02/front.jpg",
+    link: "/sherwanis?product=2"
+  },
+  {
+    id: 2,
+    title: "Royal Silk Kurta Pajama",
+    price: "₹ 4,499",
+    image: "/images/products/men/kurtas-pyjamas/kurta-02/front.jpg",
+    link: "/kurtas?product=2"
+  },
+  {
+    id: 3,
+    title: "Beige Royalty Suit",
+    price: "₹ 24,999",
+    image: "/images/products/men/suits/suits-02/front.jpg",
+    link: "/suits?product=2"
+  },
+  {
+    id: 4,
+    title: "Traditional Leather Jutti",
+    price: "₹ 3,999",
+    image: "/images/products/men/shoes/shoes-02/front.jpg",
+    link: "/shoes?product=4"
+  },
+  {
+    id: 5,
+    title: "Classic Wedding Pagadi",
+    price: "₹ 2,499",
+    image: "/images/products/men/pagadi/pagadi-01/front.jpg",
+    link: "/pagadis?product=5"
+  }
 ];
 
 // CURATE LOOK
@@ -38,7 +90,7 @@ const weddingLooks = [
   { title: "Wedding", image: "/images/looks/wedding.jpg", link: "/sherwanis" },
   { title: "Reception", image: "/images/looks/reception.jpg", link: "/suits" },
   { title: "Engagement", image: "/images/looks/engagement.jpg", link: "/kurtas" },
-  { title: "Sangeet", image: "/images/looks/sangeet.jpg", link: "/blazers" },
+  { title: "Sangeet", image: "/images/looks/sangeet.jpg", link: "/kurtas" },
 ];
 
 // RECOMMENDED
@@ -154,7 +206,9 @@ const MenLandingPage = () => {
       <section className="men-promo" style={{ backgroundImage: "url(/images/banners/men-promo.jpg)" }}>
         <div className="promo-content">
           <h2>Redefine Celebrations</h2>
-          <Link to="/collections" className="promo-btn">SHOP NOW</Link>
+         
+
+          <Link to="/pagadis" className="promo-btn">SHOP NOW</Link>
         </div>
       </section>
 
@@ -192,7 +246,7 @@ const MenLandingPage = () => {
       </div>
     </Link>
 
-    <Link to="/blazers" className="curate-card">
+    <Link to="/suits" className="curate-card">
       <img src="/images/looks/festive.jpg" alt="Festive Nights" />
       <div className="curate-overlay">
         <span>Festive Nights</span>
@@ -225,7 +279,7 @@ const MenLandingPage = () => {
         </div>
       </section>
 
-      <Footer />
+      
     </div>
   );
 };

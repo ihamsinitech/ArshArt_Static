@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./SherwaniPage.css"; // reuse same CSS
+import "./SherwaniPage.css";
 import {
   FaStar,
   FaHeart,
   FaRegHeart,
   FaChevronLeft,
   FaChevronRight,
+  FaEye,
 } from "react-icons/fa";
 
 /* =======================
@@ -13,6 +14,7 @@ import {
 ======================= */
 const products = Array.from({ length: 8 }, (_, i) => ({
   id: i + 1,
+  sku: `ARSH-SUIT-${i + 1}`,
   name: `Premium Suit ${i + 1}`,
   price: 12999 + i * 800,
   rating: 4.6,
@@ -30,6 +32,18 @@ const products = Array.from({ length: 8 }, (_, i) => ({
   },
 }));
 
+/* =======================
+   SUITS DETAILS
+======================= */
+const productDetails = {
+  colour: "Black / Navy / Charcoal",
+  material: "Premium Blended Fabric",
+  work: "Tailored Finish",
+  washCare: "Dry Clean Only",
+  itemsIncluded: "Blazer & Trousers",
+  description:
+    "A refined premium suit tailored for modern elegance. Ideal for weddings, formal events, and special occasions.",
+};
 
 export default function SuitsPage() {
   const [activeProduct, setActiveProduct] = useState(null);
@@ -39,40 +53,44 @@ export default function SuitsPage() {
   const [closing, setClosing] = useState(false);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+  const [showSizeChart, setShowSizeChart] = useState(false);
+  const [openAccordion, setOpenAccordion] = useState(null);
 
   /* =======================
-     SUITS BANNER SLIDER
+     BANNER SLIDER
   ======================= */
   const bannerImages = [
-    "/images/banners/men-banner3.jpg",
-    "/images/banners/men-banner4.jpg",
-    "/images/banners/men-promo.jpg",
+    "/images/banners/suits/banner1.jpg",
+    "/images/banners/suits/banner2.jpg",
+    "/images/banners/suits/banner3.jpg",
+    "/images/banners/suits/banner4.jpg",
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
-    }, 4500);
+    const timer = setInterval(
+      () => setCurrentSlide((p) => (p + 1) % bannerImages.length),
+      4500
+    );
     return () => clearInterval(timer);
   }, []);
 
   const nextSlide = () =>
-    setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
+    setCurrentSlide((p) => (p + 1) % bannerImages.length);
 
   const prevSlide = () =>
-    setCurrentSlide((prev) =>
-      prev === 0 ? bannerImages.length - 1 : prev - 1
+    setCurrentSlide((p) =>
+      p === 0 ? bannerImages.length - 1 : p - 1
     );
 
   /* =======================
      BODY SCROLL LOCK
   ======================= */
   useEffect(() => {
-    document.body.style.overflow = activeProduct ? "hidden" : "auto";
-    return () => (document.body.style.overflow = "auto");
-  }, [activeProduct]);
+    document.body.style.overflow =
+      activeProduct || showSizeChart ? "hidden" : "auto";
+  }, [activeProduct, showSizeChart]);
 
   const toggleWishlist = (id) => {
     setWishlist((prev) =>
@@ -88,10 +106,45 @@ export default function SuitsPage() {
     }, 250);
   };
 
+  /* =======================
+     ADD TO CART (LOCALSTORAGE)
+  ======================= */
+  const handleAddToCart = () => {
+    if (!selectedSize || !selectedColor) {
+      alert("Please select size and color");
+      return;
+    }
+
+    const cartItem = {
+      id: activeProduct.id,
+      sku: activeProduct.sku,
+      name: activeProduct.name,
+      price: activeProduct.price,
+      image: activeProduct.images.front,
+      size: selectedSize,
+      color: selectedColor,
+      qty: qty,
+    };
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(cartItem);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Added to cart 🛒");
+  };
+
+  /* =======================
+     BUY NOW
+  ======================= */
+  const handleBuyNow = () => {
+    handleAddToCart();
+    window.location.href = "/checkout";
+  };
+
   return (
     <div className="sherwani-page">
       {/* =======================
-         SUITS HERO BANNER
+         SUITS BANNER
       ======================= */}
       <div className="banner-carousel">
         {bannerImages.map((img, index) => (
@@ -105,8 +158,7 @@ export default function SuitsPage() {
             <div className="slide-overlay">
               <div className="slide-content">
                 <h1>SUITS COLLECTION</h1>
-                <p>Sharp. Elegant. Contemporary.</p>
-                <button className="shop-now-btn">Shop Suits</button>
+                <p>Tailored Elegance for Every Occasion</p>
               </div>
             </div>
           </div>
@@ -118,20 +170,10 @@ export default function SuitsPage() {
         <button className="carousel-btn next" onClick={nextSlide}>
           <FaChevronRight />
         </button>
-
-        <div className="carousel-dots">
-          {bannerImages.map((_, i) => (
-            <span
-              key={i}
-              className={`dot ${i === currentSlide ? "active" : ""}`}
-              onClick={() => setCurrentSlide(i)}
-            />
-          ))}
-        </div>
       </div>
 
       {/* =======================
-         SUITS LISTING
+         PRODUCT GRID
       ======================= */}
       <div className="listing-grid">
         {products.map((p) => (
@@ -139,11 +181,11 @@ export default function SuitsPage() {
             <div
               className="listing-img"
               onClick={() => {
-                setSelectedSize("");
-                setSelectedColor("");
                 setActiveProduct(p);
                 setActiveImage("front");
                 setQty(1);
+                setSelectedSize("");
+                setSelectedColor("");
               }}
             >
               <img src={p.images.front} alt={p.name} />
@@ -162,7 +204,7 @@ export default function SuitsPage() {
       </div>
 
       {/* =======================
-         QUICK VIEW MODAL
+         PRODUCT MODAL
       ======================= */}
       {activeProduct && (
         <div className="modal-overlay" onClick={closeModal}>
@@ -170,6 +212,7 @@ export default function SuitsPage() {
             className={`modal ${closing ? "closing" : ""}`}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Thumbnails */}
             <div className="thumbs-vertical">
               {Object.keys(activeProduct.images).map((k) => (
                 <img
@@ -182,10 +225,12 @@ export default function SuitsPage() {
               ))}
             </div>
 
+            {/* Image */}
             <div className="modal-image">
               <img src={activeProduct.images[activeImage]} alt="" />
             </div>
 
+            {/* Details */}
             <div className="modal-details">
               <h2>{activeProduct.name}</h2>
 
@@ -199,20 +244,13 @@ export default function SuitsPage() {
               </div>
 
               <h3 className="price">₹{activeProduct.price}</h3>
+              <p className="sku">ARS ID – {activeProduct.sku}</p>
 
-              <div
-                className="modal-wishlist"
-                onClick={() => toggleWishlist(activeProduct.id)}
-              >
-                {wishlist.includes(activeProduct.id) ? (
-                  <FaHeart />
-                ) : (
-                  <FaRegHeart />
-                )}
-                <span>Add to Wishlist</span>
+              <div className="viewed">
+                <FaEye /> 10,842 people viewed this recently
               </div>
 
-              {/* Colors */}
+              {/* Color */}
               <div className="block">
                 <p>Color</p>
                 <div className="color-row">
@@ -229,20 +267,27 @@ export default function SuitsPage() {
                 </div>
               </div>
 
-              {/* Sizes */}
-              <div className="block">
+              {/* Size */}
+              <div className="block size-header">
                 <p>Size</p>
-                <div className="size-row">
-                  {activeProduct.sizes.map((s) => (
-                    <button
-                      key={s}
-                      className={selectedSize === s ? "active" : ""}
-                      onClick={() => setSelectedSize(s)}
-                    >
-                      {s}
-                    </button>
-                  ))}
-                </div>
+                <span
+                  className="size-chart"
+                  onClick={() => setShowSizeChart(true)}
+                >
+                  Size Chart
+                </span>
+              </div>
+
+              <div className="size-row">
+                {activeProduct.sizes.map((s) => (
+                  <button
+                    key={s}
+                    className={selectedSize === s ? "active" : ""}
+                    onClick={() => setSelectedSize(s)}
+                  >
+                    {s}
+                  </button>
+                ))}
               </div>
 
               {/* Quantity */}
@@ -252,9 +297,76 @@ export default function SuitsPage() {
                 <button onClick={() => setQty(qty + 1)}>+</button>
               </div>
 
-              <button className="cart-btn">ADD TO CART</button>
-              <button className="buy-btn">BUY NOW</button>
+              <button className="cart-btn" onClick={handleAddToCart}>
+                ADD TO CART
+              </button>
+              <button className="buy-btn" onClick={handleBuyNow}>
+                BUY NOW
+              </button>
+
+              {/* Accordions */}
+              {["details", "declaration", "shipping"].map((key) => (
+                <div className="accordion-section" key={key}>
+                  <div
+                    className="accordion-header"
+                    onClick={() =>
+                      setOpenAccordion(openAccordion === key ? null : key)
+                    }
+                  >
+                    <h4>
+                      {key === "details"
+                        ? "PRODUCT DETAILS"
+                        : key === "declaration"
+                        ? "PRODUCT DECLARATION"
+                        : "SHIPPING & RETURNS"}
+                    </h4>
+                    <span>{openAccordion === key ? "−" : "+"}</span>
+                  </div>
+
+                  {openAccordion === key && (
+                    <div className="accordion-content">
+                      <p>{productDetails.description}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* =======================
+         SUITS SIZE CHART
+      ======================= */}
+      {showSizeChart && (
+        <div className="sizechart-overlay" onClick={() => setShowSizeChart(false)}>
+          <div className="sizechart-modal" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="sizechart-close"
+              onClick={() => setShowSizeChart(false)}
+            >
+              ×
+            </button>
+
+            <h2>Suit Size Chart (Inches)</h2>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Chest</th>
+                  <th>Shoulder</th>
+                  <th>Jacket Length</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>S</td><td>36</td><td>17</td><td>28</td></tr>
+                <tr><td>M</td><td>38</td><td>17.5</td><td>29</td></tr>
+                <tr><td>L</td><td>40</td><td>18</td><td>30</td></tr>
+                <tr><td>XL</td><td>42</td><td>18.5</td><td>31</td></tr>
+                <tr><td>XXL</td><td>44</td><td>19</td><td>32</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
       )}

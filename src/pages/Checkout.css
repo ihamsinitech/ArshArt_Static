@@ -1,0 +1,190 @@
+/* ================= PAGE ================= */
+.checkout-page {
+  padding: 40px 20px;
+  background: #f3f3f3;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ================= GRID ================= */
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* ================= LEFT ================= */
+.checkout-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ================= CARDS ================= */
+.checkout-address,
+.checkout-payment,
+.checkout-summary {
+  background: #ffffff;
+  padding: 26px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+/* ================= HEADINGS ================= */
+.checkout-address h2,
+.checkout-payment h2,
+.checkout-summary h2 {
+  font-size: 20px;
+  margin-bottom: 18px;
+  font-weight: 700;
+  color: #111;
+  border-left: 4px solid #d60000;
+  padding-left: 10px;
+}
+
+/* ================= ADDRESS INPUTS ================= */
+.checkout-address input,
+.checkout-address textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.checkout-address input:focus,
+.checkout-address textarea:focus {
+  outline: none;
+  border-color: #d60000;
+}
+
+/* ================= PAYMENT OPTIONS ================= */
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s;
+  background: #fff;
+}
+
+.payment-option:hover {
+  border-color: #d60000;
+}
+
+.payment-option input {
+  accent-color: #d60000;
+  cursor: pointer;
+}
+
+/* ================= PAYMENT DETAILS ================= */
+.payment-details {
+  margin-top: 14px;
+  padding: 16px;
+  background: #fff5f5;
+  border: 1px dashed #d60000;
+  border-radius: 6px;
+}
+
+.payment-details p {
+  font-size: 14px;
+  color: #111;
+}
+
+.payment-details input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* ================= SUMMARY ================= */
+.checkout-summary {
+  position: sticky;
+  top: 20px;
+}
+
+/* ================= SUMMARY ITEMS ================= */
+.summary-item {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.summary-item img {
+  width: 64px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.summary-details {
+  font-size: 14px;
+  color: #111;
+}
+
+.summary-details .title {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* ================= PRICE ROWS ================= */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  font-size: 15px;
+  color: #111;
+}
+
+.summary-row.total {
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 20px;
+  color: #d60000;
+}
+
+/* ================= PLACE ORDER BUTTON ================= */
+.place-order-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 22px;
+  background: #d60000;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.place-order-btn:hover {
+  background: #a80000;
+}
+
+.place-order-btn:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-summary {
+    position: static;
+  }
+}

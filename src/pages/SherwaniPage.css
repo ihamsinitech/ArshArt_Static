@@ -88,6 +88,9 @@
   height: 520px;
   object-fit: cover;
 }
+.modal-image {
+  flex: 1;
+}
 
 /* DETAILS */
 .modal-details {
@@ -537,4 +540,300 @@
   .banner-carousel {
     margin-bottom: 24px;
   }
+}
+
+
+
+
+/* ===============================
+   SKU ID (Below Price)
+=============================== */
+.sku {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+/* ===============================
+   Recently Viewed (Eye Icon)
+=============================== */
+.viewed {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.viewed svg {
+  color: #d32f2f; /* ArshArt Red */
+}
+
+/* ===============================
+   Size Header + Size Chart Link
+=============================== */
+.size-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.size-chart {
+  font-size: 13px;
+  color: #d32f2f;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ===============================
+   Pincode Search Bar
+=============================== */
+.pincode-row {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0 20px;
+}
+
+.pincode-row input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.pincode-row button {
+  padding: 0 20px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ===============================
+   Product Sections Wrapper
+=============================== */
+.product-section {
+  border-top: 1px solid #ddd;
+  padding-top: 18px;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.product-section h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+/* ===============================
+   Product Details Rows
+=============================== */
+.pd-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.pd-row span:first-child {
+  color: #555;
+}
+
+.pd-row span:last-child {
+  color: #000;
+  font-weight: 500;
+}
+
+/* ===============================
+   Description Text
+=============================== */
+.desc {
+  margin-top: 12px;
+  color: #555;
+  line-height: 1.6;
+}
+/* ===============================
+   FIX MODAL SCROLL ISSUE
+=============================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal container */
+.modal {
+  background: #fff;
+  width: 90%;
+  max-width: 1200px;
+  max-height: 90vh;       /* 👈 KEY */
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;      /* prevent outer scroll */
+}
+
+/* Right side content scroll */
+.modal-details {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;      /* 👈 KEY FIX */
+  max-height: 90vh;      /* 👈 KEY FIX */
+}
+/* Product modal */
+.modal-overlay {
+  z-index: 9000;
+}
+
+/* Size chart overlay (must be above modal) */
+.sizechart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 10000; /* 👈 VERY IMPORTANT */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sizechart-modal {
+  background: #f8f5f0;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  padding: 30px;
+  border-radius: 8px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.sizechart-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+/* =====================================================
+   ARSHART SIZE CHART – BRAND STYLING (ALL-IN-ONE)
+   Paste at END of CSS file
+===================================================== */
+
+/* 1. Overlay background */
+.sizechart-overlay {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* 2. Size chart modal container */
+.sizechart-modal {
+  background: #faf7f2; /* ArshArt cream */
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  color: #111111;
+}
+
+/* 3. Title styling */
+.sizechart-modal h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #111111;
+}
+
+/* 4. Close button (ArshArt red) */
+.sizechart-close {
+  color: #d32f2f;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.sizechart-close:hover {
+  transform: scale(1.1);
+}
+
+/* 5. Table layout (Manyavar-style) */
+.sizechart-modal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.sizechart-modal th {
+  background: #f1e6d6;
+  color: #111;
+  font-weight: 600;
+  padding: 14px;
+  text-align: center;
+  border: 1px solid #e0d6c8;
+}
+
+.sizechart-modal td {
+  padding: 14px;
+  text-align: center;
+  border: 1px solid #e0d6c8;
+  font-size: 15px;
+}
+
+/* 6. Highlight size column */
+.sizechart-modal th:first-child,
+.sizechart-modal td:first-child {
+  font-weight: 600;
+  background: #f7efe4;
+}
+
+/* 7. Responsive (mobile friendly) */
+@media (max-width: 768px) {
+  .sizechart-modal {
+    padding: 20px;
+  }
+
+  .sizechart-modal h2 {
+    font-size: 22px;
+  }
+
+  .sizechart-modal th,
+  .sizechart-modal td {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+/* ===============================
+   ACCORDION STYLES
+=============================== */
+
+.accordion-section {
+  border-top: 1px solid #d8d8d8;
+  padding: 18px 0;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.accordion-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.accordion-header span {
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.accordion-content {
+  margin-top: 14px;
+  font-size: 14px;
+  color: #444;
 }
