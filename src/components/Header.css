@@ -290,11 +290,193 @@ header {
     transition: all 0.3s ease;
     padding: 5px;
     border-radius: 4px;
+    z-index: 1001;
+    margin-left: auto; 
 }
 
 .mobile-menu-btn:hover {
     color: #D4AF37;
     background-color: rgba(212, 175, 55, 0.05);
+}
+
+@media (max-width: 992px) {
+    .mobile-menu-btn {
+        display: block; /* Show on mobile */
+        order: 3; /* Ensure it's the last item in flex */
+    }
+    
+    /* Hide all header actions on mobile except the logo */
+    .header-actions {
+        display: none !important; /* Hide all icons on mobile */
+    }
+    
+    .main-nav {
+        display: none;
+        position: fixed; /* Changed to fixed for mobile overlay */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #ffffff;
+        flex-direction: column;
+        padding: 80px 20px 30px;
+        box-shadow: none;
+        border-top: none;
+        gap: 0;
+        margin: 0;
+        z-index: 1000;
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .main-nav.active {
+        display: flex;
+        transform: translateX(0);
+    }
+    
+    /* Logo positioning for mobile */
+    .logo {
+        margin-left: 0;
+        flex: 1; /* Take available space */
+    }
+    
+    /* Header content layout for mobile */
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    
+    /* Close button styling */
+    .mobile-menu-btn.active {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1001;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        font-size: 20px;
+        padding: 4px;
+    }
+    
+    .main-nav {
+        padding: 70px 15px 20px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .mobile-menu-btn {
+        font-size: 18px;
+    }
+    
+    .logo img {
+        height: 40px;
+        width: 90px;
+    }
+}
+
+/* Overlay for mobile menu */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+}
+
+/* Mobile menu header */
+.mobile-menu-header {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 15px 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.mobile-menu-header.active {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Mobile menu item styling */
+.nav-item {
+    width: 100%;
+}
+
+.nav-link {
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    font-size: 15px;
+    width: 100%;
+}
+
+.nav-link:last-child {
+    border-bottom: none;
+}
+
+/* Update the existing mobile dropdown styles */
+@media (max-width: 992px) {
+    /* Keep the existing dropdown styles but ensure they're part of the mobile menu */
+    .dropdown-menu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        box-shadow: none;
+        border: none;
+        padding: 10px 0 10px 20px;
+        background-color: rgba(212, 175, 55, 0.05);
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        border-left: 3px solid #D4AF37;
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .dropdown-menu.active {
+        display: block;
+        transform: none;
+    }
+}
+
+/* Desktop styles - keep header actions visible */
+@media (min-width: 993px) {
+    .header-actions {
+        display: flex !important; /* Ensure visible on desktop */
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .mobile-menu-btn {
+        display: none; /* Hide hamburger on desktop */
+    }
 }
 
 /* Responsive Styles */
@@ -517,215 +699,187 @@ header {
     }
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;           /* more space between logo & text */
+
+.signin-btn {
+    background-color: transparent;
+    color: #2c2c2c;
+    border: 1px solid #ddd;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+    white-space: nowrap;
 }
 
-
-.logo-img {
-  height: 62px;       
-  width: auto;         
-  object-fit: contain;
+.signin-btn:hover {
+    background-color: #D4AF37;
+    color: white;
+    border-color: #D4AF37;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
 }
 
-
-.logo-text {
-  font-size: 30px;     /* match bigger logo */
-  font-weight: 600;
-  letter-spacing: 2px;
-}
-.main-header {
-  padding: 14px 0;   /* gives breathing space */
+/* User Profile Dropdown */
+.user-dropdown {
+    position: relative;
+    margin-right: 15px;
 }
 
-/* =========================
-   HEADER ALIGNMENT FIX
-========================= */
-
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  white-space: nowrap;
+.user-profile:hover {
+    background-color: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.2);
 }
 
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+.user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
 }
 
-/* SEARCH BAR */
-.header-search {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid #c9a84e;
-  padding: 6px 12px;
-  border-radius: 4px;
-  min-width: 220px;
-  background: #fff;
+/* User Info in Dropdown */
+.user-info {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    background-color: rgba(212, 175, 55, 0.05);
 }
 
-.header-search input {
-  border: none;
-  outline: none;
-  width: 100%;
-  font-size: 14px;
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-/* ICONS */
-.action-icon {
-  position: relative;
-  font-size: 18px;
+.user-details strong {
+    color: #333;
+    font-size: 14px;
 }
 
-.action-count {
-  position: absolute;
-  top: -6px;
-  right: -8px;
-  background: #c9a84e;
-  color: #fff;
-  font-size: 10px;
-  border-radius: 50%;
-  padding: 2px 5px;
-}
-/* ================================
-   FINAL HEADER ALIGNMENT FIX
-   (NON-DESTRUCTIVE OVERRIDES)
-================================ */
-
-/* Prevent horizontal scroll */
-html, body {
-  overflow-x: hidden;
+.user-details small {
+    color: #666;
+    font-size: 12px;
 }
 
-/* Ensure header never exceeds viewport */
-header,
-.main-header {
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
+/* Logout Button in Dropdown */
+.logout-btn {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: #ff6b6b;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
 }
 
-/* Fix container overflow without changing structure */
-header .container {
-  max-width: 1300px;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
+.logout-btn:hover {
+    background-color: rgba(255, 107, 107, 0.1);
+    color: #ff3b3b;
+    padding-left: 25px;
 }
 
-/* REMOVE negative logo offset safely */
-header .logo {
-  margin-left: 0 !important;
-  align-items: center;
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .signin-btn {
+        padding: 7px 16px;
+        font-size: 13px;
+        margin-right: 10px;
+    }
 }
 
-/* Normalize logo image size */
-header .logo-img {
-  height: 48px !important;
-  width: auto;
-}
-
-/* Fix header vertical alignment */
-header .header-content {
-  min-height: 72px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Keep nav perfectly centered */
-header .main-nav {
-  flex: 1;
-  justify-content: center;
-  margin: 0;
-}
-
-/* Lock right-side width to prevent pushing */
-header .header-actions {
-  flex-shrink: 0;
-  align-items: center;
-}
-
-/* Search bar alignment fix */
-header .header-search {
-  height: 36px;
-  display: flex;
-  align-items: center;
-}
-
-/* Prevent icon jump */
-header .action-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Badge position correction */
-header .action-count {
-  top: -5px;
-  right: -6px;
-}
-
-/* Mobile safety fix */
 @media (max-width: 992px) {
-  header .main-nav {
-    justify-content: flex-start;
-  }
-
-  header .header-content {
-    gap: 12px;
-  }
-}
-/* =====================================
-   DROPDOWN VISIBILITY FIX (CRITICAL)
-===================================== */
-
-/* Allow dropdowns to overflow header */
-header,
-.main-header,
-.header-content {
-  overflow: visible !important;
-}
-
-/* Ensure dropdown is above banners */
-.dropdown-menu {
-  z-index: 9999 !important;
-  position: absolute;
-}
-
-/* Fix stacking context created by sticky header */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 5000;
-}
-
-/* Ensure hero/banner never covers header dropdown */
-.men-hero,
-.hero,
-.hero-section,
-.banner,
-.carousel,
-.banner-carousel {
-  position: relative;
-  z-index: 1;
+    .signin-btn {
+        width: 100%;
+        margin: 10px 0;
+        justify-content: center;
+        padding: 12px;
+    }
+    
+    .user-dropdown .dropdown-menu {
+        position: static;
+        display: none;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        margin: 10px 0;
+        padding-left: 0;
+    }
+    
+    .user-dropdown .dropdown-menu.active {
+        display: block;
+    }
+    
+    .user-profile {
+        justify-content: space-between;
+        width: 100%;
+        margin: 10px 0;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .header-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 0;
+    }
+    
+    .search-icon,
+    .action-icon:not(.user-profile) {
+        display: none;
+    }
 }
 
-/* Desktop dropdown positioning refinement */
+@media (max-width: 768px) {
+    .signin-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .user-name {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 576px) {
+    .signin-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .signin-btn svg {
+        font-size: 12px;
+    }
+}
+
+/* Desktop hover effects */
 @media (min-width: 993px) {
-  .dropdown-menu {
-    top: calc(100% + 6px);
-    left: 0;
-  }
+    .user-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .user-dropdown:hover .user-profile .dropdown-icon {
+        transform: rotate(180deg);
+    }
 }

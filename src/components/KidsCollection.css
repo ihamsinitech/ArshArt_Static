@@ -1,84 +1,180 @@
-/* Kids Collection */
+/* Kids Collection - Clean Version */
 .kids-collection {
-    padding: 100px 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1513519245088-0e129a5c42b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover fixed;
-    position: relative;
-    color: #ffffff;
-    text-align: center;
+    min-height: 110vh; /* increased height */
+    background: #f3eee5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
 }
 
-.kids-collection .container {
-    position: relative;
-    z-index: 1;
+.slideshow-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-.kids-collection h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    margin-bottom: 20px;
-    font-weight: 700;
-    color: #f5e8c7;
+/* Slide Wrapper */
+.slide-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    height: 620px; /* increased from 500px */
+    margin-bottom: 50px;
 }
 
-.kids-collection p {
-    font-size: 18px;
-    max-width: 700px;
-    margin: 0 auto 40px;
-    opacity: 0.9;
-    line-height: 1.8;
-    color: #f5f5f5;
+.left-layout {
+    grid-template-areas: "content image";
 }
 
-.kids-collection .btn {
-    background: linear-gradient(135deg, #D4AF37, #c19b2a);
-    color: #ffffff;
-    padding: 16px 40px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
+.right-layout {
+    grid-template-areas: "image content";
+}
+
+/* Image */
+.slide-image {
+    grid-area: image;
+    height: 620px; /* increased */
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
-    display: inline-block;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 
-.kids-collection .btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
+.slide-image img {
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.7s ease;
+    object-fit: cover;
 }
 
-.kids-collection .btn:hover::before {
-    left: 100%;
+/* Content */
+.slide-content {
+    grid-area: content;
+    height: 620px; /* match image height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertical centering */
+    align-items: center;
+    text-align: center;
+    padding: 50px 40px;
 }
 
-.kids-collection .btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(212, 175, 55, 0.3);
+.slide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.slide-description {
+    font-size: 1.35rem;
+    color: #D4AF37;
+    font-weight: 600;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    width: 100%;
+}
+
+.slide-text {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 35px;
+    width: 100%;
+    max-width: 520px;
+}
+
+/* Button */
+.shop-btn {
+    background: linear-gradient(135deg, #D4AF37, #c19b2a);
+    color: white;
+    padding: 15px 44px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.shop-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 22px rgba(212, 175, 55, 0.35);
+}
+
+/* Navigation Dots */
+.slide-nav {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+}
+
+.nav-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nav-dot.active {
+    border-color: #D4AF37;
+    background: #D4AF37;
 }
 
 /* Responsive */
+@media (max-width: 992px) {
+    .slide-wrapper {
+        grid-template-columns: 1fr;
+        grid-template-areas: "image" "content" !important;
+        height: auto;
+        gap: 40px;
+    }
+
+    .slide-image {
+        height: 420px;
+    }
+
+    .slide-content {
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    .slide-title {
+        font-size: 2.3rem;
+    }
+}
+
 @media (max-width: 768px) {
-    .kids-collection {
-        padding: 70px 0;
+    .slide-image {
+        height: 360px;
     }
-    
-    .kids-collection h2 {
-        font-size: 36px;
+
+    .slide-title {
+        font-size: 2.1rem;
     }
-    
-    .kids-collection p {
-        font-size: 16px;
+
+    .slide-description {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide-image {
+        height: 300px;
+    }
+
+    .slide-title {
+        font-size: 1.9rem;
+    }
+
+    .slide-description {
+        font-size: 1.1rem;
     }
 }

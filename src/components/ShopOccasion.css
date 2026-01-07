@@ -1,0 +1,173 @@
+/* src/components/ShopOccasion.css */
+.shop-occasion {
+  background-color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+.shop-occasion-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.gender-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.gender-tab {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  padding: 10px 30px;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.3s;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.gender-tab:hover {
+  color: #000;
+  background-color: #f5f5f5;
+}
+
+.gender-tab.active {
+  color: #000;
+  background-color: #f0f0f0;
+  position: relative;
+}
+
+.gender-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+}
+
+.divider {
+  height: 2px;
+  background-color: #e0e0e0;
+  margin-top: 10px;
+}
+
+.occasions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  padding: 40px 0;
+}
+
+.occasion-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.occasion-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.image-container {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.occasion-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.occasion-card:hover .occasion-image {
+  transform: scale(1.1);
+}
+
+.occasion-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #222;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .shop-occasion-container {
+    padding: 20px 15px;
+  }
+  
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .occasions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .image-container {
+    height: 180px;
+  }
+  
+  .occasion-title {
+    font-size: 1.5rem;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 1.8rem;
+  }
+  
+  .occasions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .image-container {
+    height: 200px;
+  }
+  
+  .gender-tabs {
+    gap: 15px;
+  }
+  
+  .gender-tab {
+    padding: 8px 20px;
+    font-size: 1rem;
+  }
+  
+  .occasion-title {
+    font-size: 1.4rem;
+    padding: 12px;
+  }
+}
